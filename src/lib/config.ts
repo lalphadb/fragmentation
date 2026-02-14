@@ -1,0 +1,22 @@
+export const siteConfig = {
+  name: process.env.NEXT_PUBLIC_COMPANY_NAME || "Dynamitage-Fragmentation M.R",
+  phone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "(418) 573-0202",
+  email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "mad-or@hotmail.com",
+  messenger: process.env.NEXT_PUBLIC_MESSENGER || "Dynamitage-Fragmentation M.R",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://frag.4lb.ca",
+  rbq: process.env.NEXT_PUBLIC_RBQ_NUMBER || "XXXX-XXXX-XX",
+  insurance: process.env.NEXT_PUBLIC_INSURANCE_INFO || "Assurance responsabilité civile complète",
+  hours: "Lundi au vendredi : 7h à 17h",
+  region: "Partout au Québec",
+  description: "Experts en forage, dynamitage et fragmentation de roc. Services résidentiels, commerciaux, industriels et génie civil partout au Québec.",
+  nav: [
+    { href: "/", label: "Accueil" },
+    { href: "/services", label: "Services" },
+    { href: "/realisations", label: "Réalisations" },
+    { href: "/securite", label: "Sécurité" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/a-propos", label: "À propos" },
+    { href: "/emploi", label: "Emploi" },
+    { href: "/contact", label: "Contact" },
+  ],
+};

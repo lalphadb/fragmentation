@@ -1,0 +1,499 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ==========================================
+   GLOBAL RESET & BASE
+   ========================================== */
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-navy-800; }
+
+/* ==========================================
+   BUTTONS — Chevron/diamond cut style
+   ========================================== */
+@layer components {
+  .btn-chevron {
+    @apply inline-flex items-center justify-center gap-2 font-bold px-8 py-3.5 uppercase text-sm tracking-wider transition-all duration-300;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+  }
+  .btn-chevron-orange {
+    @apply btn-chevron bg-orange-400 text-navy-950 hover:bg-orange-300;
+  }
+  .btn-chevron-outline {
+    @apply btn-chevron border-2 border-white/40 text-white hover:bg-white hover:text-navy-950;
+  }
+  .btn-chevron-dark {
+    @apply btn-chevron bg-navy-950 text-white hover:bg-navy-900;
+  }
+  .btn-flat {
+    @apply inline-flex items-center justify-center gap-2 font-bold px-8 py-3.5 uppercase text-sm tracking-wider transition-all duration-300;
+  }
+  .btn-flat-orange {
+    @apply btn-flat bg-orange-400 text-navy-950 hover:bg-orange-300;
+  }
+
+  /* Form elements */
+  .input-field {
+    @apply w-full border-b-2 border-navy-200 bg-navy-50 px-4 py-3.5 text-navy-800 focus:border-orange-400 focus:bg-white outline-none transition-all duration-300 text-sm;
+  }
+  .label-field {
+    @apply block text-xs font-bold text-navy-500 mb-2 uppercase tracking-wider;
+  }
+}
+
+/* ==========================================
+   REVEAL ANIMATIONS (IntersectionObserver)
+   ========================================== */
+.reveal-base {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+.reveal-base.reveal-in {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+.reveal-left.reveal-in {
+  opacity: 1;
+  transform: translateX(0) translateZ(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+.reveal-right.reveal-in {
+  opacity: 1;
+  transform: translateX(0) translateZ(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+.reveal-scale.reveal-in {
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+}
+
+/* Diamond-specific scale reveal (preserves rotate) */
+.reveal-diamond {
+  opacity: 0;
+  transform: scale(0.8) rotate(45deg);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  will-change: opacity, transform;
+}
+.reveal-diamond.reveal-in {
+  opacity: 1;
+  transform: scale(1) rotate(45deg) translateZ(0);
+}
+
+/* ==========================================
+   HERO SLIDER — clip-path wipe
+   ========================================== */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  will-change: clip-path;
+  transform: translateZ(0);
+}
+.hero-slide-enter { animation: clipWipeIn 1.2s cubic-bezier(0.77,0,0.175,1) forwards; }
+.hero-slide-exit { animation: clipWipeOut 1.2s cubic-bezier(0.77,0,0.175,1) forwards; }
+.hero-slide-active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+.hero-slide-hidden { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+@keyframes clipWipeIn {
+  0%   { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+  100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+@keyframes clipWipeOut {
+  0%   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  100% { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+}
+
+/* Hero numbered pagination */
+.hero-pagination {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.hero-page-num {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: transparent;
+  border: none;
+}
+.hero-page-num::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #e8a830;
+  transition: width 0.3s ease;
+}
+.hero-page-num.active {
+  color: white;
+  font-size: 18px;
+}
+.hero-page-num.active::after {
+  width: 100%;
+}
+.hero-page-num:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+/* ==========================================
+   CHEVRON SEPARATOR
+   ========================================== */
+.chevron-separator {
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+}
+.chevron-separator::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  background: inherit;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+}
+
+/* ==========================================
+   DIAMOND GRID (Services)
+   ========================================== */
+.diamond-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.diamond-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  transform: rotate(45deg);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform;
+}
+.diamond-cell:hover {
+  transform: rotate(45deg) scale(1.05);
+  z-index: 2;
+}
+.diamond-cell-inner {
+  transform: rotate(-45deg);
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.diamond-cell-empty {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+}
+.diamond-cell-filled {
+  background: #1a1d23;
+}
+
+/* Mobile: diamonds → cards */
+@media (max-width: 768px) {
+  .diamond-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .diamond-cell {
+    transform: rotate(0deg);
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+  .diamond-cell:hover {
+    transform: scale(1.02);
+  }
+  .diamond-cell-inner {
+    transform: rotate(0deg);
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+  }
+  .diamond-cell-empty {
+    display: none;
+  }
+}
+
+/* ==========================================
+   HEX GRID (Projects/Realisations)
+   ========================================== */
+.hex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.hex-cell {
+  position: relative;
+  width: 200px;
+  height: 230px;
+  margin: -12px 6px;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: transform 0.4s ease;
+  will-change: transform;
+  transform: translateZ(0);
+}
+.hex-cell:hover {
+  transform: scale(1.06) translateZ(0);
+  z-index: 2;
+}
+.hex-cell:nth-child(even) {
+  margin-top: 103px;
+}
+.hex-cell-image {
+  border: 2px solid #e8a830;
+}
+.hex-cell-text {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+.hex-cell-empty {
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+}
+
+/* Mobile: hex → cards */
+@media (max-width: 768px) {
+  .hex-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-width: 100%;
+  }
+  .hex-cell {
+    width: 100%;
+    height: 200px;
+    margin: 0;
+    clip-path: none;
+  }
+  .hex-cell:nth-child(even) {
+    margin-top: 0;
+  }
+  .hex-cell-empty {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .hex-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================
+   STATS — Count-up section with spinning ring
+   ========================================== */
+.stat-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid rgba(26,29,35,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto 12px;
+}
+.stat-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #1a1d23;
+  animation: spinSlow 3s linear infinite;
+}
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+/* ==========================================
+   DIAGONAL TRANSITION OVERLAYS
+   ========================================== */
+.diag-top-white {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: white;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+  z-index: 2;
+}
+.diag-bottom-white {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: white;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  z-index: 2;
+}
+.diag-top-navy {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: #1a1d23;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+  z-index: 2;
+}
+.diag-bottom-navy {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: #1a1d23;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  z-index: 2;
+}
+.diag-top-orange {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: #e8a830;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+  z-index: 2;
+}
+.diag-bottom-orange {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: #e8a830;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  z-index: 2;
+}
+
+/* ==========================================
+   DECORATIVE NETWORK / BLUEPRINT LINES
+   ========================================== */
+.decor-network {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.decor-network line,
+.decor-network circle,
+.decor-network polygon,
+.decor-network rect {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 0.8;
+}
+
+/* ==========================================
+   DOUBLE HEADER STYLES
+   ========================================== */
+.header-utility {
+  @apply bg-navy-950 text-white/70 text-xs py-1.5 relative z-50;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.header-main {
+  @apply transition-all duration-500 ease-out relative z-40;
+}
+.header-main.transparent {
+  @apply bg-transparent;
+}
+.header-main.solid {
+  @apply backdrop-blur-md shadow-lg;
+  background: rgba(26,29,35,0.95);
+}
+
+/* Nav separator */
+.nav-sep {
+  width: 1px;
+  height: 16px;
+  background: #e8a830;
+  opacity: 0.4;
+}
+
+/* Dropdown mega menu */
+.mega-dropdown {
+  @apply absolute top-full left-0 backdrop-blur-lg shadow-2xl opacity-0 invisible translate-y-2 transition-all duration-300;
+  background: rgba(26,29,35,0.98);
+  min-width: 480px;
+}
+.mega-dropdown.open {
+  @apply opacity-100 visible translate-y-0;
+}
+
+/* Social rail */
+.social-rail {
+  @apply fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-3 p-3;
+  z-index: 30;
+}
+.social-rail a {
+  @apply w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-navy-950 hover:bg-orange-400 hover:text-white transition-all duration-300;
+}
+
+/* ==========================================
+   ACCENT LINE
+   ========================================== */
+.accent-line {
+  @apply w-16 h-1 bg-orange-400;
+}
+
+/* ==========================================
+   ACCESSIBILITY — Reduced motion
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-base, .reveal-left, .reveal-right, .reveal-scale, .reveal-diamond {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-slide-enter, .hero-slide-exit {
+    animation: none;
+  }
+  .hero-slide-enter {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .stat-ring::before {
+    animation: none;
+  }
+  .diamond-cell, .hex-cell {
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
