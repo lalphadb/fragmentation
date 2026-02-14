@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -158,6 +159,10 @@ export default function ContactClient() {
                     <button type="submit" disabled={status === "sending"} className="btn-chevron-orange disabled:opacity-50">
                       {status === "sending" ? "Envoi en cours..." : "Envoyer le message"}
                     </button>
+                    <p className="text-navy-400 text-xs mt-3">
+                      En soumettant ce formulaire, vous acceptez que vos données soient traitées conformément à notre{" "}
+                      <Link href="/politique-de-confidentialite" className="text-orange-400 hover:underline">politique de confidentialité</Link>.
+                    </p>
                   </form>
                 )}
               </div>

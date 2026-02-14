@@ -9,6 +9,11 @@ export const siteConfig = {
   hours: "Lundi au vendredi : 7h à 17h",
   region: "Partout au Québec",
   description: "Experts en forage, dynamitage et fragmentation de roc. Services résidentiels, commerciaux, industriels et génie civil partout au Québec.",
+  privacy: {
+    responsable: "Mathieu Rousseau",
+    title: "Président",
+    lastUpdated: "2026-02-14",
+  },
   nav: [
     { href: "/", label: "Accueil" },
     { href: "/services", label: "Services" },

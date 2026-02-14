@@ -3,6 +3,8 @@ import { siteConfig } from "@/lib/config";
 import DoubleHeader from "@/components/layout/DoubleHeader";
 import SocialRail from "@/components/layout/SocialRail";
 import FooterSection from "@/components/footer/Footer";
+import CookieBanner from "@/components/cookie/CookieBanner";
+import AnalyticsLoader from "@/components/analytics/AnalyticsLoader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -55,6 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SocialRail />
         <main className="flex-1">{children}</main>
         <FooterSection />
+        <CookieBanner />
+        <AnalyticsLoader />
       </body>
     </html>
   );

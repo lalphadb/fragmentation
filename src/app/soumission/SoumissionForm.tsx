@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
 const PROJECT_TYPES = [
@@ -284,6 +285,14 @@ export default function SoumissionForm() {
                 <div className="absolute top-0 left-0 w-1 h-full bg-red-500" />
                 <span className="ml-2">{errorMsg}</span>
               </div>
+            )}
+
+            {/* Privacy notice — shown on last step */}
+            {step === 4 && (
+              <p className="text-navy-400 text-xs mt-4">
+                En soumettant ce formulaire, vous acceptez que vos données soient traitées conformément à notre{" "}
+                <Link href="/politique-de-confidentialite" className="text-orange-400 hover:underline">politique de confidentialité</Link>.
+              </p>
             )}
 
             {/* Navigation */}
