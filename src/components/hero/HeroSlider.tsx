@@ -38,32 +38,36 @@ export default function HeroSlider() {
     const t = setTimeout(() => {
       setPrev(null);
       setAnimating(false);
-    }, 1200);
+    }, 1400);
     return () => clearTimeout(t);
   }, [animating]);
 
-  const slideClass = (i: number) => {
-    if (i === current && animating) return "hero-slide hero-slide-enter";
-    if (i === current && !animating) return "hero-slide hero-slide-active";
-    if (i === prev && animating) return "hero-slide hero-slide-exit";
-    return "hero-slide hero-slide-hidden";
-  };
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden" aria-label="Hero">
-      {/* Slides */}
-      {heroSlides.map((slide, i) => (
-        <div key={slide.image} className={slideClass(i)}>
-          <Image
-            src={slide.image}
-            alt={slide.alt}
-            fill
-            className="object-cover scale-105"
-            priority={i === 0}
-            sizes="100vw"
-          />
-        </div>
-      ))}
+      {/* Slides — crossfade + subtle zoom */}
+      {heroSlides.map((slide, i) => {
+        const isActive = i === current;
+        const isLeaving = i === prev && animating;
+        return (
+          <div
+            key={slide.image}
+            className="absolute inset-0 transition-opacity duration-[1.4s] ease-in-out"
+            style={{
+              opacity: isActive || isLeaving ? 1 : 0,
+              zIndex: isActive ? 1 : 0,
+            }}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              className={`object-cover transition-transform duration-[6s] ease-out ${isActive ? "scale-110" : "scale-100"}`}
+              priority={i === 0}
+              sizes="100vw"
+            />
+          </div>
+        );
+      })}
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950/90 z-[2]" />
