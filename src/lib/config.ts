@@ -4,7 +4,7 @@ export const siteConfig = {
   email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "mad-or@hotmail.com",
   messenger: process.env.NEXT_PUBLIC_MESSENGER || "Dynamitage-Fragmentation M.R",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://frag.4lb.ca",
-  rbq: process.env.NEXT_PUBLIC_RBQ_NUMBER || "XXXX-XXXX-XX",
+  rbq: process.env.NEXT_PUBLIC_RBQ_NUMBER || "5796-5626-01",
   insurance: process.env.NEXT_PUBLIC_INSURANCE_INFO || "Assurance responsabilité civile complète",
   hours: "Lundi au vendredi : 7h à 17h",
   region: "Partout au Québec",
