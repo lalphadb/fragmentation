@@ -62,7 +62,7 @@ export default function DoubleHeader() {
         <div className="container mx-auto px-6 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 relative z-10">
-            <Image src="/images/Logo.png" alt={siteConfig.name} width={56} height={56} className="rounded" priority />
+            <Image src="/images/Logo.png" alt={siteConfig.name} width={160} height={160} className="rounded" priority />
             <span className="text-white font-black text-sm uppercase tracking-wider hidden md:inline">
               Fragmentation<span className="text-orange-400"> M.R</span>
             </span>
