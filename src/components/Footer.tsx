@@ -36,7 +36,7 @@ export default function Footer() {
               Services
             </h4>
             <ul className="space-y-3 text-sm">
-              {["Dynamitage résidentiel", "Dynamitage industriel", "Forage spécialisé", "Fragmentation mécanique", "Exploitation carrière", "Prédécoupage"].map((s) => (
+              {["Dynamitage résidentiel", "Dynamitage industriel", "Forage spécialisé", "Fragmentation mécanique", "Prédécoupage & ancrage"].map((s) => (
                 <li key={s}>
                   <Link href="/services" className="hover:text-orange-400 transition-colors flex items-center gap-2">
                     <svg className="w-3 h-3 text-orange-400/50" viewBox="0 0 12 12" fill="none"><path d="M2 2L6 6L2 10" stroke="currentColor" strokeWidth="1.5" /></svg>

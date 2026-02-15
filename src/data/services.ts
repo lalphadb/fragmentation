@@ -46,15 +46,6 @@ export const services: Service[] = [
     image: "/images/realisations/Traveau_beton.jpg",
   },
   {
-    id: "carriere",
-    title: "Exploitation de carrière",
-    slug: "carriere",
-    shortDesc: "Dynamitage de production en carrière : granulats, pierre, agrégats.",
-    description: "Nous offrons nos services de forage et dynamitage pour l'exploitation de carrières. Nos plans de tir sont optimisés pour maximiser la fragmentation tout en contrôlant les projections et les vibrations. Nous travaillons en étroite collaboration avec les opérateurs de carrière pour assurer une production constante et sécuritaire.",
-    features: ["Plans de tir optimisés", "Contrôle des vibrations", "Contrôle des projections", "Production de granulats", "Pierre dimensionnelle", "Travail en continu"],
-    image: "/images/realisations/Roche_pret_sauter.jpg",
-  },
-  {
     id: "predecoupage-ancrage",
     title: "Prédécoupage et ancrage",
     slug: "predecoupage-ancrage",

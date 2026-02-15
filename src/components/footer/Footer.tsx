@@ -9,7 +9,6 @@ const footerLinks = {
     { label: "Dynamitage industriel", href: "/services" },
     { label: "Forage spécialisé", href: "/services" },
     { label: "Fragmentation mécanique", href: "/services" },
-    { label: "Carrière", href: "/services" },
     { label: "Prédécoupage & ancrage", href: "/services" },
   ],
   navigation: [

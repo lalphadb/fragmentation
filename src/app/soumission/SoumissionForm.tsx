@@ -9,7 +9,6 @@ const PROJECT_TYPES = [
   { value: "commercial", label: "Commercial" },
   { value: "industriel", label: "Industriel" },
   { value: "genie-civil", label: "Génie civil / Voirie" },
-  { value: "carriere", label: "Carrière" },
   { value: "autre", label: "Autre" },
 ];
 
