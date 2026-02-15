@@ -32,7 +32,7 @@ export default function FooterSection() {
           {/* Col 1: Logo + desc */}
           <div>
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <Image src="/images/Logo.png" alt={siteConfig.name} width={44} height={44} className="rounded" />
+              <Image src="/images/Logo.png" alt={siteConfig.name} width={60} height={60} className="rounded" />
               <span className="font-black text-sm uppercase tracking-wider">
                 Fragmentation<span className="text-orange-400"> M.R</span>
               </span>
