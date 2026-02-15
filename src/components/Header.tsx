@@ -25,7 +25,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-lg overflow-hidden shadow-md border-2 border-orange-400">
-            <img src="/images/logo.jpg" alt={siteConfig.name} className="w-full h-full object-cover" />
+            <img src="/images/Logo.png" alt={siteConfig.name} className="w-full h-full object-cover" />
           </div>
           <div className="hidden md:block">
             <span className={`font-black text-sm leading-none block tracking-tight transition-colors duration-300 ${scrolled ? "text-navy-900" : "text-white"}`}>
