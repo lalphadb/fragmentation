@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { siteConfig } from "@/lib/config";
 import DoubleHeader from "@/components/layout/DoubleHeader";
 import SocialRail from "@/components/layout/SocialRail";
@@ -31,12 +32,15 @@ export const metadata: Metadata = {
   alternates: { canonical: siteConfig.url },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const nonce = (await headers()).get("x-nonce") ?? "";
+
   return (
     <html lang="fr">
       <head>
         <script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
