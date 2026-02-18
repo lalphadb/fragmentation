@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { COOKIE_CATEGORIES, type CookieCategory } from "@/lib/cookie-consent";
+import { useDictionary } from "@/lib/dictionary-context";
+import { localePath } from "@/lib/i18n";
 
 interface Props {
   open: boolean;
@@ -13,6 +15,9 @@ interface Props {
 }
 
 export default function CookiePreferences({ open, onClose, onSave, onRefuseAll, currentCategories }: Props) {
+  const { dict, locale } = useDictionary();
+  const t = dict.common.cookie;
+
   const [categories, setCategories] = useState<Record<CookieCategory, boolean>>({
     essential: true,
     analytics: currentCategories?.analytics ?? false,
@@ -45,7 +50,7 @@ export default function CookiePreferences({ open, onClose, onSave, onRefuseAll, 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Paramètres des cookies">
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label={t.preferencesTitle}>
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
@@ -57,11 +62,11 @@ export default function CookiePreferences({ open, onClose, onSave, onRefuseAll, 
         <div className="p-6 md:p-8">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-black text-navy-950">Paramètres des cookies</h2>
+            <h2 className="text-xl font-black text-navy-950">{t.preferencesTitle}</h2>
             <button
               onClick={onClose}
               className="w-8 h-8 flex items-center justify-center text-navy-400 hover:text-navy-900 transition-colors"
-              aria-label="Fermer"
+              aria-label={t.close}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -70,38 +75,41 @@ export default function CookiePreferences({ open, onClose, onSave, onRefuseAll, 
           </div>
 
           <p className="text-navy-500 text-sm leading-relaxed mb-6">
-            Choisissez les catégories de cookies que vous acceptez. Les cookies essentiels sont toujours actifs car ils sont nécessaires au fonctionnement du site.
+            {t.preferencesDesc}
           </p>
 
           {/* Categories */}
           <div className="space-y-3 mb-8">
-            {COOKIE_CATEGORIES.map((cat) => (
-              <div key={cat.id} className="bg-navy-50 p-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-navy-900 text-sm">{cat.label}</p>
-                    <p className="text-navy-500 text-xs mt-1 leading-relaxed">{cat.description}</p>
-                  </div>
-                  <div className="flex-shrink-0">
-                    {cat.required ? (
-                      <span className="text-[10px] font-bold text-orange-500 bg-orange-50 px-2 py-1 uppercase tracking-wider">
-                        Toujours actif
-                      </span>
-                    ) : (
-                      <button
-                        className="cookie-toggle"
-                        data-checked={categories[cat.id]}
-                        data-disabled={false}
-                        onClick={() => toggle(cat.id)}
-                        role="switch"
-                        aria-checked={categories[cat.id]}
-                        aria-label={cat.label}
-                      />
-                    )}
+            {COOKIE_CATEGORIES.map((cat) => {
+              const catDict = t.categories[cat.id];
+              return (
+                <div key={cat.id} className="bg-navy-50 p-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-navy-900 text-sm">{catDict.label}</p>
+                      <p className="text-navy-500 text-xs mt-1 leading-relaxed">{catDict.description}</p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      {cat.required ? (
+                        <span className="text-[10px] font-bold text-orange-500 bg-orange-50 px-2 py-1 uppercase tracking-wider">
+                          {t.alwaysActive}
+                        </span>
+                      ) : (
+                        <button
+                          className="cookie-toggle"
+                          data-checked={categories[cat.id]}
+                          data-disabled={false}
+                          onClick={() => toggle(cat.id)}
+                          role="switch"
+                          aria-checked={categories[cat.id]}
+                          aria-label={catDict.label}
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Actions */}
@@ -110,23 +118,23 @@ export default function CookiePreferences({ open, onClose, onSave, onRefuseAll, 
               onClick={() => onSave(categories)}
               className="w-full btn-flat bg-orange-400 text-navy-950 hover:bg-orange-300 py-3"
             >
-              Enregistrer mes choix
+              {t.saveChoices}
             </button>
             <button
               onClick={onRefuseAll}
               className="w-full text-center text-navy-400 text-sm hover:text-orange-400 transition-colors py-2"
             >
-              Tout refuser
+              {t.refuseAll}
             </button>
           </div>
 
           <div className="mt-6 pt-4 border-t border-navy-100">
             <Link
-              href="/politique-de-confidentialite"
+              href={localePath("/politique-de-confidentialite", locale)}
               className="text-orange-400 text-xs hover:text-orange-500 transition-colors"
               onClick={onClose}
             >
-              Voir notre politique de confidentialité
+              {t.viewPolicy}
             </Link>
           </div>
         </div>

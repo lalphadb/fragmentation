@@ -5,16 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import DecorBlueprint from "@/components/ui/DecorBlueprint";
+import { useDictionary } from "@/lib/dictionary-context";
+import { localePath } from "@/lib/i18n";
 
 const heroSlides = [
-  { image: "/images/realisations/chantier1.jpg", alt: "Chantier de forage" },
-  { image: "/images/realisations/Travail_dynamitage_reussi.jpg", alt: "Dynamitage réussi" },
-  { image: "/images/realisations/Roche_pret_sauter.jpg", alt: "Roche préparée" },
-  { image: "/images/realisations/Travail_preparation.jpg", alt: "Préparation du chantier" },
-  { image: "/images/realisations/Travaux_payasage.jpg", alt: "Travaux paysagers" },
+  { image: "/images/realisations/chantier1.jpg" },
+  { image: "/images/realisations/Travail_dynamitage_reussi.jpg" },
+  { image: "/images/realisations/Roche_pret_sauter.jpg" },
+  { image: "/images/realisations/Travail_preparation.jpg" },
+  { image: "/images/realisations/Travaux_payasage.jpg" },
 ];
 
 export default function HeroSlider() {
+  const { dict, locale } = useDictionary();
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
   const [animating, setAnimating] = useState(false);
@@ -59,7 +62,7 @@ export default function HeroSlider() {
           >
             <Image
               src={slide.image}
-              alt={slide.alt}
+              alt={dict.home.hero.slides[i].alt}
               fill
               className={`object-cover transition-transform duration-[6s] ease-out ${isActive ? "scale-110" : "scale-100"}`}
               priority={i === 0}
@@ -77,25 +80,25 @@ export default function HeroSlider() {
         <div className="max-w-3xl">
           <div className="animate-fade-in-up opacity-0" style={{ animationDelay: "0.3s" }}>
             <span className="text-orange-400 text-xs font-bold uppercase tracking-[0.3em] mb-6 block">
-              Experts en excavation de roc
+              {dict.home.hero.label}
             </span>
           </div>
           <h1
             className="animate-fade-in-up opacity-0 text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-8"
             style={{ animationDelay: "0.5s" }}
           >
-            Forage,<br />
-            dynamitage<br />
-            <span className="text-orange-400">&amp; fragmentation</span>
+            {dict.home.hero.title1}<br />
+            {dict.home.hero.title2}<br />
+            <span className="text-orange-400">{dict.home.hero.title3}</span>
           </h1>
           <div className="animate-fade-in-up opacity-0" style={{ animationDelay: "0.7s" }}>
             <p className="text-lg md:text-xl text-white/60 leading-relaxed mb-10 max-w-lg">
-              Service professionnel et sécuritaire pour tous vos projets, partout au Québec.
+              {dict.home.hero.subtitle}
             </p>
           </div>
           <div className="animate-fade-in-up opacity-0 flex flex-col sm:flex-row gap-4" style={{ animationDelay: "0.9s" }}>
-            <Link href="/soumission" className="btn-chevron-orange text-base px-10 py-4">
-              Soumission gratuite
+            <Link href={localePath("/soumission", locale)} className="btn-chevron-orange text-base px-10 py-4">
+              {dict.common.nav.soumissionGratuite}
             </Link>
             <a href={`tel:${siteConfig.phone.replace(/\D/g, "")}`} className="btn-chevron-outline text-base px-10 py-4">
               {siteConfig.phone}

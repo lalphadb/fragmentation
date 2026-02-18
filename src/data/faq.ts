@@ -1,3 +1,5 @@
+import type { Locale } from "@/lib/i18n";
+
 export interface FAQ {
   id: string;
   question: string;
@@ -5,7 +7,7 @@ export interface FAQ {
   category: string;
 }
 
-export const faqs: FAQ[] = [
+const faqsFr: FAQ[] = [
   {
     id: "f1",
     question: "Quels sont les délais pour obtenir une soumission?",
@@ -43,3 +45,47 @@ export const faqs: FAQ[] = [
     category: "Services",
   },
 ];
+
+const faqsEn: FAQ[] = [
+  {
+    id: "f1",
+    question: "How long does it take to get a quote?",
+    answer: "We generally provide a detailed quote within 24 to 48 business hours of receiving your request. For urgent projects, contact us directly by phone and we will do our best to expedite the process.",
+    category: "Quote",
+  },
+  {
+    id: "f2",
+    question: "Is a permit required for blasting?",
+    answer: "Yes, blasting requires municipal and sometimes provincial permits. We handle all administrative procedures: permit applications, resident notifications, coordination with local authorities and obtaining the necessary authorizations. Our blasters hold all certifications required by law.",
+    category: "Permits",
+  },
+  {
+    id: "f3",
+    question: "Can blasting damage my house or my neighbours' property?",
+    answer: "No, when carried out by qualified professionals. We install seismographs before each blast to measure vibrations in real time. Our charges are calculated to remain well within permitted standards. We also conduct pre- and post-blast inspections of neighbouring properties to document existing conditions.",
+    category: "Vibrations",
+  },
+  {
+    id: "f4",
+    question: "What happens in case of bad weather?",
+    answer: "Safety is our absolute priority. In the event of electrical storms, high winds or reduced visibility, blasting operations are postponed. We constantly monitor weather forecasts and communicate any schedule changes to all parties as quickly as possible.",
+    category: "Weather",
+  },
+  {
+    id: "f5",
+    question: "How does a pre-blast inspection work?",
+    answer: "Before work begins, our technician visits properties within the blast influence zone. They document the condition of foundations, walls, floors and installations with photos and videos. This report serves as a reference in case of a claim. A post-blast inspection is also carried out to confirm no damage occurred.",
+    category: "Inspection",
+  },
+  {
+    id: "f6",
+    question: "What are the alternatives to blasting?",
+    answer: "When blasting is not possible (municipal restrictions, extreme proximity to structures), we offer mechanical rock breaking with hydraulic breakers and non-detonating expansive agents. These methods are slower but allow rock fracturing without vibrations or blast noise.",
+    category: "Services",
+  },
+];
+
+export const faqs: Record<Locale, FAQ[]> = {
+  fr: faqsFr,
+  en: faqsEn,
+};

@@ -1,15 +1,18 @@
 "use client";
 
 import ScrollReveal, { CountUp } from "@/components/ScrollReveal";
-
-const figures = [
-  { value: 500, suffix: "+", label: "Projets complétés" },
-  { value: 0, suffix: "", label: "Accident de travail", display: "0" },
-  { value: 100, suffix: "%", label: "Satisfaction client" },
-  { value: 15, suffix: "+", label: "Années d'expérience" },
-];
+import { useDictionary } from "@/lib/dictionary-context";
 
 export default function KeyFigures() {
+  const { dict } = useDictionary();
+
+  const figures = [
+    { value: 500, suffix: "+", label: dict.home.stats.projects },
+    { value: 0, suffix: "", label: dict.home.stats.accidents, display: "0" },
+    { value: 100, suffix: "%", label: dict.home.stats.satisfaction },
+    { value: 15, suffix: "+", label: dict.home.stats.experience },
+  ];
+
   return (
     <section className="bg-white py-16 md:py-20" aria-label="Chiffres clés">
       <div className="container mx-auto px-6">

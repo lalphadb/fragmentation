@@ -1,27 +1,32 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/config";
+import { localePath } from "@/lib/i18n";
+import { useDictionary } from "@/lib/dictionary-context";
 import CookieSettingsButton from "@/components/cookie/CookieSettingsButton";
 
-const footerLinks = {
-  services: [
-    { label: "Dynamitage résidentiel", href: "/services" },
-    { label: "Dynamitage industriel", href: "/services" },
-    { label: "Forage spécialisé", href: "/services" },
-    { label: "Fragmentation mécanique", href: "/services" },
-    { label: "Prédécoupage & ancrage", href: "/services" },
-  ],
-  navigation: [
-    { label: "Accueil", href: "/" },
-    { label: "Réalisations", href: "/realisations" },
-    { label: "Sécurité", href: "/securite" },
-    { label: "FAQ", href: "/faq" },
-    { label: "À propos", href: "/a-propos" },
-    { label: "Emploi", href: "/emploi" },
-  ],
-};
+const serviceHrefs = [
+  "/services",
+  "/services",
+  "/services",
+  "/services",
+  "/services",
+];
+
+const navigationItems = [
+  { key: "home" as const, href: "/" },
+  { key: "realisations" as const, href: "/realisations" },
+  { key: "securite" as const, href: "/securite" },
+  { key: "faq" as const, href: "/faq" },
+  { key: "aPropos" as const, href: "/a-propos" },
+  { key: "emploi" as const, href: "/emploi" },
+];
 
 export default function FooterSection() {
+  const { dict, locale } = useDictionary();
+
   return (
     <footer className="bg-navy-950 text-white relative overflow-hidden">
       {/* Top accent bar */}
@@ -31,14 +36,14 @@ export default function FooterSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Col 1: Logo + desc */}
           <div>
-            <Link href="/" className="flex items-center gap-3 mb-6">
+            <Link href={localePath("/", locale)} className="flex items-center gap-3 mb-6">
               <Image src="/images/Logo.png" alt={siteConfig.name} width={60} height={60} className="rounded" />
               <span className="font-black text-sm uppercase tracking-wider">
                 Fragmentation<span className="text-orange-400"> M.R</span>
               </span>
             </Link>
             <p className="text-white/40 text-sm leading-relaxed mb-6">
-              Experts en forage, dynamitage et fragmentation de roc. Service professionnel et sécuritaire partout au Québec.
+              {dict.common.footer.description}
             </p>
             <div className="flex gap-3">
               <a href="https://www.facebook.com/fragmentationmr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-orange-400 transition-colors">
@@ -52,13 +57,13 @@ export default function FooterSection() {
 
           {/* Col 2: Services */}
           <div>
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-400 mb-6">Services</h3>
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-400 mb-6">{dict.common.footer.servicesTitle}</h3>
             <ul className="space-y-2.5">
-              {footerLinks.services.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-white/50 text-sm hover:text-orange-400 transition-colors flex items-center gap-2">
+              {dict.common.footer.serviceLinks.map((label, i) => (
+                <li key={label}>
+                  <Link href={localePath(serviceHrefs[i], locale)} className="text-white/50 text-sm hover:text-orange-400 transition-colors flex items-center gap-2">
                     <svg className="w-2.5 h-2.5 text-orange-400/50 flex-shrink-0" viewBox="0 0 8 8"><path d="M2 0L6 4L2 8" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
-                    {link.label}
+                    {label}
                   </Link>
                 </li>
               ))}
@@ -67,42 +72,42 @@ export default function FooterSection() {
 
           {/* Col 3: Navigation */}
           <div>
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-400 mb-6">Navigation</h3>
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-400 mb-6">{dict.common.footer.navigationTitle}</h3>
             <ul className="space-y-2.5">
-              {footerLinks.navigation.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-white/50 text-sm hover:text-orange-400 transition-colors flex items-center gap-2">
+              {navigationItems.map((item) => (
+                <li key={item.key}>
+                  <Link href={localePath(item.href, locale)} className="text-white/50 text-sm hover:text-orange-400 transition-colors flex items-center gap-2">
                     <svg className="w-2.5 h-2.5 text-orange-400/50 flex-shrink-0" viewBox="0 0 8 8"><path d="M2 0L6 4L2 8" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
-                    {link.label}
+                    {dict.common.nav[item.key]}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4: Contact — diamond/hex border accent */}
+          {/* Col 4: Contact -- diamond/hex border accent */}
           <div>
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-400 mb-6">Contact</h3>
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-400 mb-6">{dict.common.footer.contactTitle}</h3>
             <div className="border-l-2 border-orange-400 pl-5 space-y-4">
               <div>
-                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Téléphone</p>
+                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">{dict.common.footer.phone}</p>
                 <a href={`tel:${siteConfig.phone.replace(/\D/g, "")}`} className="text-orange-400 font-bold text-lg hover:text-orange-300 transition-colors">
                   {siteConfig.phone}
                 </a>
               </div>
               <div>
-                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Courriel</p>
+                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">{dict.common.footer.email}</p>
                 <a href={`mailto:${siteConfig.email}`} className="text-white/60 text-sm hover:text-orange-400 transition-colors">
                   {siteConfig.email}
                 </a>
               </div>
               <div>
-                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Horaire</p>
-                <p className="text-white/50 text-sm">{siteConfig.hours}</p>
+                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">{dict.common.footer.hours}</p>
+                <p className="text-white/50 text-sm">{dict.common.hoursValue}</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Zone de service</p>
-                <p className="text-white font-bold text-sm">Partout au Québec</p>
+                <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">{dict.common.footer.serviceArea}</p>
+                <p className="text-white font-bold text-sm">{dict.common.footer.serviceAreaValue}</p>
               </div>
             </div>
           </div>
@@ -113,11 +118,11 @@ export default function FooterSection() {
       <div className="border-t border-white/10">
         <div className="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/30 text-xs">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. Tous droits réservés.
+            &copy; {new Date().getFullYear()} {siteConfig.name}. {dict.common.footer.copyright}
           </p>
           <div className="flex items-center gap-3 text-xs flex-wrap justify-center">
-            <Link href="/politique-de-confidentialite" className="text-white/30 hover:text-orange-400 transition-colors">
-              Politique de confidentialité
+            <Link href={localePath("/politique-de-confidentialite", locale)} className="text-white/30 hover:text-orange-400 transition-colors">
+              {dict.common.footer.privacy}
             </Link>
             <span className="text-white/15">|</span>
             <CookieSettingsButton />

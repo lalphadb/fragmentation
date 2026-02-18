@@ -3,34 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useDictionary } from "@/lib/dictionary-context";
+import { localePath } from "@/lib/i18n";
 
-const blocks = [
-  {
-    image: "/images/realisations/Tapis_protection.jpg",
-    alt: "Tapis de protection sur chantier",
-    imageLeft: true,
-    bg: "bg-white",
-    label: "Sécurité",
-    title: "Zéro compromis sur la sécurité",
-    text: "Chaque opération est planifiée avec soin. Nos boutefeux certifiés suivent un protocole rigoureux en 8 étapes, du forage initial à l'inspection post-dynamitage. Sismographes, tapis de protection, périmètres de sécurité — rien n'est laissé au hasard.",
-    cta: { label: "Nos procédures", href: "/securite" },
-  },
-  {
-    image: "/images/realisations/forage_creusage.jpg",
-    alt: "Forage de précision",
-    imageLeft: false,
-    bg: "bg-navy-50",
-    label: "Équipement",
-    title: "Technologie de pointe",
-    text: "Foreuses hydrauliques de dernière génération, détonateurs électroniques programmables, systèmes de mesure de vibrations — notre parc d'équipement nous permet d'offrir un service de précision adapté à chaque contexte.",
-    cta: { label: "Nos services", href: "/services" },
-  },
+const blockImages = [
+  { image: "/images/realisations/Tapis_protection.jpg", imageLeft: true, bg: "bg-white", href: "/securite" },
+  { image: "/images/realisations/forage_creusage.jpg", imageLeft: false, bg: "bg-navy-50", href: "/services" },
 ];
 
 export default function ExpertiseSplit() {
+  const { dict, locale } = useDictionary();
+
+  const blocks = dict.home.expertise.blocks.map((b: { label: string; title: string; text: string; cta: string; alt: string }, i: number) => ({
+    ...blockImages[i],
+    alt: b.alt,
+    label: b.label,
+    title: b.title,
+    text: b.text,
+    cta: { label: b.cta, href: blockImages[i].href },
+  }));
+
   return (
-    <div aria-label="Expertise">
-      {blocks.map((block, i) => (
+    <div aria-label={dict.home.expertise.ariaLabel}>
+      {blocks.map((block: { bg: string; imageLeft: boolean; image: string; alt: string; label: string; title: string; text: string; cta: { label: string; href: string } }, i: number) => (
         <section key={i} className={`${block.bg} relative overflow-hidden`}>
           <div className="grid lg:grid-cols-2 min-h-[500px] lg:min-h-[600px]">
             {/* Image side */}
@@ -57,7 +52,7 @@ export default function ExpertiseSplit() {
                 <p className="text-navy-500 leading-relaxed mb-8">
                   {block.text}
                 </p>
-                <Link href={block.cta.href} className="btn-chevron-dark !text-xs">
+                <Link href={localePath(block.cta.href, locale)} className="btn-chevron-dark !text-xs">
                   {block.cta.label}
                 </Link>
               </ScrollReveal>

@@ -3,10 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import { realisations } from "@/data/realisations";
+import { realisations as realisationsByLocale } from "@/data/realisations";
+import { useDictionary } from "@/lib/dictionary-context";
+import { localePath } from "@/lib/i18n";
 
 export default function ProjectsHexGrid() {
-  const projects = realisations.slice(0, 6);
+  const { dict, locale } = useDictionary();
+  const projects = realisationsByLocale[locale].slice(0, 6);
 
   // Build staggered hex layout: alternate image / text / empty
   const hexItems: Array<{ type: "image" | "text" | "empty"; project?: typeof projects[0] }> = [];
@@ -21,18 +24,18 @@ export default function ProjectsHexGrid() {
   hexItems.push({ type: "empty" });
 
   return (
-    <section className="bg-navy-950 py-24 md:py-32 relative overflow-hidden" aria-label="Réalisations">
+    <section className="bg-navy-950 py-24 md:py-32 relative overflow-hidden" aria-label={dict.home.projects.title}>
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <ScrollReveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
-            <Link href="/realisations" className="btn-chevron-orange !text-xs order-2 md:order-1">
-              Voir tout
+            <Link href={localePath("/realisations", locale)} className="btn-chevron-orange !text-xs order-2 md:order-1">
+              {dict.home.projects.viewAll}
             </Link>
             <div className="order-1 md:order-2 md:text-right">
-              <span className="text-orange-400 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Portfolio</span>
+              <span className="text-orange-400 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">{dict.home.projects.label}</span>
               <div className="accent-line md:ml-auto mb-6" />
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">Réalisations</h2>
+              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">{dict.home.projects.title}</h2>
             </div>
           </div>
         </ScrollReveal>
@@ -64,8 +67,8 @@ export default function ProjectsHexGrid() {
               <div className="hex-cell hex-cell-text">
                 <p className="text-navy-400 text-[10px] uppercase tracking-wider mb-1">{project.year}</p>
                 <p className="text-navy-900 text-xs font-bold leading-tight">{project.title}</p>
-                <Link href="/realisations" className="text-orange-500 text-[10px] font-bold mt-2 hover:text-orange-600 transition-colors">
-                  Voir &rarr;
+                <Link href={localePath("/realisations", locale)} className="text-orange-500 text-[10px] font-bold mt-2 hover:text-orange-600 transition-colors">
+                  {dict.common.view} &rarr;
                 </Link>
               </div>
             </ScrollReveal>

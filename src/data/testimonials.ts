@@ -1,3 +1,5 @@
+import type { Locale } from "@/lib/i18n";
+
 export interface Testimonial {
   id: string;
   name: string;
@@ -6,7 +8,7 @@ export interface Testimonial {
   rating: number;
 }
 
-export const testimonials: Testimonial[] = [
+const testimonialsFr: Testimonial[] = [
   {
     id: "t1",
     name: "Jean-François Tremblay",
@@ -29,3 +31,32 @@ export const testimonials: Testimonial[] = [
     rating: 5,
   },
 ];
+
+const testimonialsEn: Testimonial[] = [
+  {
+    id: "t1",
+    name: "Jean-François Tremblay",
+    role: "General Contractor, Québec",
+    text: "Reliable and professional team. They blasted the rock for our foundations while meeting every deadline. Communication with the neighbours was impeccable. I recommend them without hesitation.",
+    rating: 5,
+  },
+  {
+    id: "t2",
+    name: "Marie-Claude Gagnon",
+    role: "Homeowner, Lévis",
+    text: "I was nervous about blasting near my house for the pool, but the team reassured me at every step. The pre- and post-blast inspections gave me confidence. Perfect result!",
+    rating: 5,
+  },
+  {
+    id: "t3",
+    name: "Patrick Lavoie",
+    role: "Project Manager, Civil Engineering",
+    text: "We have been working with Fragmentation M.R on our road projects for three years. Their rigour in blast planning and vibration control is exemplary. True professionals.",
+    rating: 5,
+  },
+];
+
+export const testimonials: Record<Locale, Testimonial[]> = {
+  fr: testimonialsFr,
+  en: testimonialsEn,
+};

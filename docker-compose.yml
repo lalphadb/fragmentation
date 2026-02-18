@@ -18,7 +18,7 @@ services:
       - main
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fragmentation.rule=Host(`frag.4lb.ca`)"
+      - "traefik.http.routers.fragmentation.rule=Host(`frag-dev.4lb.ca`)"
       - "traefik.http.routers.fragmentation.entrypoints=websecure"
       - "traefik.http.routers.fragmentation.tls.certresolver=letsencrypt"
       - "traefik.http.routers.fragmentation.middlewares=crowdsec@file,geoblock@file,security-headers@file"

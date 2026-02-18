@@ -1,3 +1,5 @@
+import type { Locale } from "@/lib/i18n";
+
 export interface Realisation {
   id: string;
   title: string;
@@ -9,7 +11,7 @@ export interface Realisation {
   details: string;
 }
 
-export const realisations: Realisation[] = [
+const realisationsFr: Realisation[] = [
   {
     id: "r1",
     title: "Excavation résidentielle — Fondation sur roc",
@@ -82,5 +84,90 @@ export const realisations: Realisation[] = [
   },
 ];
 
-export const categories = ["Tous", "Résidentiel", "Commercial", "Génie civil"];
-export const regions = ["Toutes", "Québec", "Trois-Rivières", "Saguenay", "Beauce", "Lévis", "Charlevoix", "Portneuf"];
+const realisationsEn: Realisation[] = [
+  {
+    id: "r1",
+    title: "Residential Excavation — Rock Foundation",
+    category: "Residential",
+    region: "Québec",
+    year: 2024,
+    description: "Controlled blasting for a single-family home foundation in a dense residential area.",
+    image: "/images/realisations/roche_residentiel_pret_sauter2.jpg",
+    details: "Blasting near existing residences with seismographs installed. Full compliance with vibration standards. Work completed in 3 days.",
+  },
+  {
+    id: "r2",
+    title: "Commercial Project — Underground Parking",
+    category: "Commercial",
+    region: "Trois-Rivières",
+    year: 2024,
+    description: "Drilling and blasting for a 200-space underground parking structure.",
+    image: "/images/realisations/Tapis_protection.jpg",
+    details: "Large-scale project in an urban setting. Coordination with the general contractor and strict compliance with municipality-approved blasting schedules.",
+  },
+  {
+    id: "r3",
+    title: "Road Infrastructure — Highway Widening",
+    category: "Civil Engineering",
+    region: "Saguenay",
+    year: 2023,
+    description: "Blasting for regional road widening in rocky terrain.",
+    image: "/images/realisations/travaux_pelte.jpg",
+    details: "Wall pre-splitting to ensure rock slope stability. Work carried out while maintaining traffic on one lane.",
+  },
+  {
+    id: "r5",
+    title: "Mechanical Breaking — Urban Rock Breaker",
+    category: "Commercial",
+    region: "Lévis",
+    year: 2023,
+    description: "Hydraulic rock breaking in a no-blasting zone.",
+    image: "/images/realisations/travaux_beton2.jpg",
+    details: "Work completed in an area where blasting was prohibited by the municipality. The rock breaker allowed excavation to be completed on schedule.",
+  },
+  {
+    id: "r6",
+    title: "Anchor Drilling — Slope Stabilization",
+    category: "Civil Engineering",
+    region: "Charlevoix",
+    year: 2024,
+    description: "Drilling and installation of anchors to stabilize an unstable rock slope.",
+    image: "/images/realisations/Pepine_creuse_trou.jpg",
+    details: "Installation of passive anchor bolts in the rock mass to prevent landslides. Working at height with enhanced safety measures.",
+  },
+  {
+    id: "r7",
+    title: "In-ground Pool on Rock — Residential",
+    category: "Residential",
+    region: "Québec",
+    year: 2023,
+    description: "Precision blasting for an in-ground pool on rocky terrain.",
+    image: "/images/realisations/Travail_manuel_porotetion.jpg",
+    details: "Rock excavation less than 10 metres from the residence. Use of reduced charges and blast mats. No damage to surrounding structures.",
+  },
+  {
+    id: "r8",
+    title: "Road Project — Municipal Sewer System",
+    category: "Civil Engineering",
+    region: "Portneuf",
+    year: 2024,
+    description: "Drilling and blasting for municipal sewer installation in rocky ground.",
+    image: "/images/realisations/chantier1.4.jpg",
+    details: "800 linear metres of trenching in granite rock. Wall pre-splitting to ensure worker safety. Municipal deadlines met.",
+  },
+];
+
+export const realisations: Record<Locale, Realisation[]> = {
+  fr: realisationsFr,
+  en: realisationsEn,
+};
+
+export const categories: Record<Locale, string[]> = {
+  fr: ["Tous", "Résidentiel", "Commercial", "Génie civil"],
+  en: ["All", "Residential", "Commercial", "Civil Engineering"],
+};
+
+export const regions: Record<Locale, string[]> = {
+  fr: ["Toutes", "Québec", "Trois-Rivières", "Saguenay", "Beauce", "Lévis", "Charlevoix", "Portneuf"],
+  en: ["All", "Québec", "Trois-Rivières", "Saguenay", "Beauce", "Lévis", "Charlevoix", "Portneuf"],
+};

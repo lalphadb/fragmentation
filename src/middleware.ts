@@ -3,6 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
 
+  // Detect locale from path
+  const pathname = request.nextUrl.pathname;
+  const locale = pathname.startsWith("/en") ? "en" : "fr";
+
   const csp = [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
@@ -17,7 +21,19 @@ export function middleware(request: NextRequest) {
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
+  requestHeaders.set("x-locale", locale);
   requestHeaders.set("Content-Security-Policy", csp);
+
+  // Rewrite FR paths to /fr/* for the [locale] segment
+  const url = request.nextUrl.clone();
+  if (!pathname.startsWith("/en") && !pathname.startsWith("/fr") && !pathname.startsWith("/api")) {
+    url.pathname = `/fr${pathname}`;
+    const response = NextResponse.rewrite(url, {
+      request: { headers: requestHeaders },
+    });
+    response.headers.set("Content-Security-Policy", csp);
+    return response;
+  }
 
   const response = NextResponse.next({
     request: { headers: requestHeaders },

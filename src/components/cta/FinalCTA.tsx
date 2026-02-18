@@ -3,10 +3,14 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useDictionary } from "@/lib/dictionary-context";
+import { localePath } from "@/lib/i18n";
 
 export default function FinalCTA() {
+  const { dict, locale } = useDictionary();
+
   return (
-    <section className="bg-navy-950 py-28 md:py-36 relative overflow-hidden" aria-label="Appel à l'action">
+    <section className="bg-navy-950 py-28 md:py-36 relative overflow-hidden" aria-label={dict.common.cta.startNow}>
       <div className="diag-top-white" />
 
       {/* Decorative diamond outlines */}
@@ -25,17 +29,17 @@ export default function FinalCTA() {
       <div className="container mx-auto px-6 relative z-10">
         <ScrollReveal>
           <div className="max-w-2xl mx-auto text-center">
-            <span className="text-orange-400 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Commencez maintenant</span>
+            <span className="text-orange-400 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">{dict.common.cta.startNow}</span>
             <div className="accent-line mx-auto mb-6" />
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-5">
-              Prêt à démarrer<br />votre projet?
+              {dict.common.cta.readyToStart}<br />{dict.common.cta.yourProject}
             </h2>
             <p className="text-white/50 text-lg mb-10 leading-relaxed">
-              Obtenez une soumission gratuite en quelques minutes. Notre équipe vous contacte sous 24 à 48 heures.
+              {dict.common.cta.ctaDescription}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/soumission" className="btn-chevron-orange text-base px-10 py-4">
-                Soumission gratuite
+              <Link href={localePath("/soumission", locale)} className="btn-chevron-orange text-base px-10 py-4">
+                {dict.common.nav.soumissionGratuite}
               </Link>
               <a href={`tel:${siteConfig.phone.replace(/\D/g, "")}`} className="btn-chevron-outline text-base px-10 py-4">
                 {siteConfig.phone}
