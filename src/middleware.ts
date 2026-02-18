@@ -7,13 +7,15 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const locale = pathname.startsWith("/en") ? "en" : "fr";
 
+  const isDev = process.env.NODE_ENV === "development";
+
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDev ? " 'unsafe-eval'" : ""}`,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: blob:",
-    "connect-src 'self'",
+    `connect-src 'self'${isDev ? " ws://localhost:* ws://10.10.10.46:*" : ""}`,
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",

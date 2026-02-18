@@ -12,7 +12,7 @@ const heroSlides = [
   { image: "/images/realisations/chantier1.jpg" },
   { image: "/images/realisations/Travail_dynamitage_reussi.jpg" },
   { image: "/images/realisations/Roche_pret_sauter.jpg" },
-  { image: "/images/realisations/Travail_preparation.jpg" },
+  { image: "/images/realisations/travail_preparation.jpg" },
   { image: "/images/realisations/Travaux_payasage.jpg" },
 ];
 

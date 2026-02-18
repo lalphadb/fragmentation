@@ -85,6 +85,7 @@ export const dictFr = {
     menu: "Menu",
     hoursValue: "Lundi au vendredi : 7h à 17h",
     regionValue: "Partout au Québec",
+    socialMedia: "Réseaux sociaux",
   },
   home: {
     hero: {
@@ -273,6 +274,7 @@ export const dictFr = {
       serviceRequired: "Service requis",
       projectLocation: "Localisation du projet",
       siteAddress: "Adresse du chantier",
+      addressPlaceholder: "123, rue Exemple",
       city: "Ville",
       postalCode: "Code postal",
       projectDetails: "Détails du projet",
@@ -397,6 +399,97 @@ export const dictFr = {
     meta: {
       title: "Politique de confidentialité",
       description: "Politique de confidentialité de Dynamitage-Fragmentation M.R. conforme à la Loi 25 du Québec.",
+    },
+    sections: {
+      s01: {
+        title: "Introduction",
+        p1: "{name} (ci-après « l'entreprise ») s'engage à protéger les renseignements personnels de ses clients, visiteurs et employés conformément à la Loi 25 sur la protection des renseignements personnels dans le secteur privé du Québec.",
+        p2: "La présente politique décrit les types de renseignements personnels que nous recueillons, les fins auxquelles ils sont utilisés, ainsi que vos droits en matière de vie privée.",
+      },
+      s02: {
+        title: "Responsable de la protection des renseignements personnels",
+        text: "Le responsable de la protection des renseignements personnels au sein de l'entreprise est :",
+        titleLabel: "Président",
+        emailLabel: "Courriel",
+        phoneLabel: "Téléphone",
+      },
+      s03: {
+        title: "Renseignements personnels collectés",
+        intro: "Nous recueillons les renseignements suivants selon le contexte :",
+        categories: [
+          { label: "Formulaire de contact", text: "Nom, adresse courriel, numéro de téléphone (facultatif), sujet et message." },
+          { label: "Demande de soumission", text: "Nom, courriel, téléphone, entreprise (facultatif), type de projet, service requis, adresse du chantier, ville, code postal, description du projet, échéancier, contraintes, fichiers joints." },
+          { label: "Candidature emploi", text: "Prénom, nom, courriel, téléphone, message de présentation, curriculum vitae (fichier)." },
+        ],
+        closing: "Nous ne recueillons aucune donnée biométrique ni aucun identifiant gouvernemental.",
+      },
+      s04: {
+        title: "Finalités de la collecte",
+        items: [
+          "Répondre à vos demandes d'information et de contact",
+          "Traiter vos demandes de soumission pour nos services",
+          "Évaluer les candidatures pour nos postes disponibles",
+          "Améliorer la qualité de nos services et de notre site web (avec votre consentement)",
+          "Respecter nos obligations légales et réglementaires",
+        ],
+      },
+      s05: {
+        title: "Cookies et technologies de suivi",
+        intro: "Notre site utilise des cookies, soit de petits fichiers texte stockés dans votre navigateur. Voici les catégories de cookies utilisés :",
+        tableHeaders: ["Catégorie", "Finalité", "Consentement"],
+        tableRows: [
+          ["Essentiels", "Fonctionnement du site, préférences de consentement", "Non requis"],
+          ["Analytiques", "Statistiques de visite, comportement de navigation", "Requis"],
+          ["Marketing", "Publicité ciblée, suivi inter-sites", "Requis"],
+        ],
+        closing: "Vos préférences de cookies sont stockées localement dans votre navigateur (localStorage) et ne sont pas transmises à nos serveurs.",
+      },
+      s06: {
+        title: "Consentement",
+        text: "Lors de votre première visite, un bandeau de consentement vous permet de choisir les catégories de cookies que vous acceptez. Vous pouvez modifier vos préférences à tout moment en utilisant le bouton ci-dessous ou via le lien « Paramètres cookies » dans le pied de page du site.",
+      },
+      s07: {
+        title: "Conservation des données",
+        items: [
+          "Demandes de contact : conservées pendant 24 mois",
+          "Demandes de soumission : conservées pendant 36 mois",
+          "Candidatures emploi : conservées pendant 12 mois",
+          "Préférences de cookies : stockées dans votre navigateur jusqu'à suppression manuelle",
+        ],
+      },
+      s08: {
+        title: "Vos droits (Loi 25)",
+        intro: "Conformément à la Loi 25 du Québec, vous disposez des droits suivants :",
+        items: [
+          "Droit d'accès : obtenir une copie de vos renseignements personnels que nous détenons",
+          "Droit de rectification : corriger des renseignements inexacts ou incomplets",
+          "Droit de suppression : demander l'effacement de vos données personnelles",
+          "Droit de retrait du consentement : retirer votre consentement à tout moment",
+          "Droit à la portabilité : recevoir vos données dans un format structuré et courant",
+        ],
+        closing: "Pour exercer vos droits, contactez notre responsable par courriel à {email} ou par téléphone au {phone}. Nous répondrons dans un délai de 30 jours conformément à la loi.",
+      },
+      s09: {
+        title: "Sécurité",
+        intro: "Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos renseignements personnels :",
+        items: [
+          "Transmission chiffrée via HTTPS/TLS",
+          "Validation des données côté serveur",
+          "Assainissement des entrées utilisateur",
+          "Limitation du débit des requêtes (rate limiting)",
+          "En-têtes de sécurité HTTP (CSP, HSTS, X-Frame-Options)",
+        ],
+      },
+      s10: {
+        title: "Modifications à cette politique",
+        text: "Nous nous réservons le droit de modifier cette politique à tout moment. En cas de modification substantielle, une nouvelle version du consentement sera demandée lors de votre prochaine visite. La date de dernière mise à jour est indiquée en haut de cette page.",
+      },
+      s11: {
+        title: "Contact",
+        text: "Pour toute question relative à cette politique ou à la protection de vos renseignements personnels, n'hésitez pas à nous contacter :",
+        emailLabel: "Courriel",
+        phoneLabel: "Téléphone",
+      },
     },
   },
   errors: {

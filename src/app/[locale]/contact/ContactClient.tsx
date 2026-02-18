@@ -89,7 +89,7 @@ export default function ContactClient() {
                     </div>
                     <div>
                       <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">{t.sidebar.openingHours}</p>
-                      <p className="text-white/60 text-sm">{siteConfig.hours}</p>
+                      <p className="text-white/60 text-sm">{dict.common.hoursValue}</p>
                     </div>
                     <div>
                       <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">{t.sidebar.serviceArea}</p>

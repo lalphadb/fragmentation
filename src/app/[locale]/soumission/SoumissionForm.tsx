@@ -185,7 +185,7 @@ export default function SoumissionForm() {
                 </div>
                 <div>
                   <label className="label-field" htmlFor="address">{t.fields.siteAddress} *</label>
-                  <input id="address" type="text" value={form.address} onChange={(e) => update("address", e.target.value)} className="input-field" placeholder="123, rue Exemple" required />
+                  <input id="address" type="text" value={form.address} onChange={(e) => update("address", e.target.value)} className="input-field" placeholder={t.fields.addressPlaceholder} required />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>

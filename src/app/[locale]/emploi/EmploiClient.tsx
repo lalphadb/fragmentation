@@ -65,7 +65,7 @@ export default function EmploiClient() {
       {/* Hero */}
       <section className="relative bg-navy-950 text-white min-h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/realisations/Travail_preparation.jpg" alt="" className="w-full h-full object-cover opacity-20" />
+          <img src="/images/realisations/travail_preparation.jpg" alt="" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 to-navy-950/90" />
         </div>
         <div className="container mx-auto px-6 relative z-10 py-32 pt-40">

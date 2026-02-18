@@ -7,14 +7,14 @@ import { sendNotification } from "@/lib/email";
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
   if (!checkRateLimit(ip)) {
-    return NextResponse.json({ error: "Trop de requêtes. Réessayez dans 15 minutes." }, { status: 429 });
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
   try {
     const body = await req.json();
     const parsed = contactSchema.safeParse(body);
     if (!parsed.success) {
-      return NextResponse.json({ error: parsed.error.errors[0]?.message || "Données invalides" }, { status: 400 });
+      return NextResponse.json({ error: parsed.error.errors[0]?.message || "Invalid data" }, { status: 400 });
     }
 
     const data = parsed.data;
@@ -31,6 +31,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[CONTACT] Erreur:", err instanceof Error ? err.message : "unknown");
-    return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

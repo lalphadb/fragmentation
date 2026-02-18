@@ -76,13 +76,14 @@ export default async function LocaleLayout({
   const nonce = (await headers()).get("x-nonce") ?? "";
 
   return (
-    <html lang={lang}>
+    <html lang={lang} suppressHydrationWarning>
       <head>
         <link rel="alternate" hrefLang="fr" href={siteConfig.url} />
         <link rel="alternate" hrefLang="en" href={`${siteConfig.url}/en`} />
         <link rel="alternate" hrefLang="x-default" href={siteConfig.url} />
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({

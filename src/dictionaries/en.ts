@@ -87,6 +87,7 @@ export const dictEn: Dictionary = {
     menu: "Menu",
     hoursValue: "Monday to Friday: 7am to 5pm",
     regionValue: "All across Quebec",
+    socialMedia: "Social media",
   },
   home: {
     hero: {
@@ -275,6 +276,7 @@ export const dictEn: Dictionary = {
       serviceRequired: "Service required",
       projectLocation: "Project location",
       siteAddress: "Site address",
+      addressPlaceholder: "123 Example Street",
       city: "City",
       postalCode: "Postal code",
       projectDetails: "Project details",
@@ -399,6 +401,97 @@ export const dictEn: Dictionary = {
     meta: {
       title: "Privacy policy",
       description: "Privacy policy of Dynamitage-Fragmentation M.R in compliance with Quebec's Law 25.",
+    },
+    sections: {
+      s01: {
+        title: "Introduction",
+        p1: "{name} (hereinafter \"the company\") is committed to protecting the personal information of its clients, visitors and employees in accordance with Quebec's Law 25 on the protection of personal information in the private sector.",
+        p2: "This policy describes the types of personal information we collect, the purposes for which it is used, and your privacy rights.",
+      },
+      s02: {
+        title: "Personal information protection officer",
+        text: "The person responsible for the protection of personal information within the company is:",
+        titleLabel: "President",
+        emailLabel: "Email",
+        phoneLabel: "Phone",
+      },
+      s03: {
+        title: "Personal information collected",
+        intro: "We collect the following information depending on the context:",
+        categories: [
+          { label: "Contact form", text: "Name, email address, phone number (optional), subject and message." },
+          { label: "Quote request", text: "Name, email, phone, company (optional), project type, required service, site address, city, postal code, project description, timeline, constraints, attached files." },
+          { label: "Job application", text: "First name, last name, email, phone, cover message, resume (file)." },
+        ],
+        closing: "We do not collect any biometric data or government-issued identifiers.",
+      },
+      s04: {
+        title: "Purposes of collection",
+        items: [
+          "Respond to your information and contact requests",
+          "Process your quote requests for our services",
+          "Evaluate applications for our available positions",
+          "Improve the quality of our services and website (with your consent)",
+          "Comply with our legal and regulatory obligations",
+        ],
+      },
+      s05: {
+        title: "Cookies and tracking technologies",
+        intro: "Our website uses cookies, which are small text files stored in your browser. Here are the categories of cookies used:",
+        tableHeaders: ["Category", "Purpose", "Consent"],
+        tableRows: [
+          ["Essential", "Site functionality, consent preferences", "Not required"],
+          ["Analytics", "Visit statistics, browsing behavior", "Required"],
+          ["Marketing", "Targeted advertising, cross-site tracking", "Required"],
+        ],
+        closing: "Your cookie preferences are stored locally in your browser (localStorage) and are not transmitted to our servers.",
+      },
+      s06: {
+        title: "Consent",
+        text: "On your first visit, a consent banner allows you to choose the cookie categories you accept. You can change your preferences at any time using the button below or via the \"Cookie settings\" link in the site footer.",
+      },
+      s07: {
+        title: "Data retention",
+        items: [
+          "Contact requests: retained for 24 months",
+          "Quote requests: retained for 36 months",
+          "Job applications: retained for 12 months",
+          "Cookie preferences: stored in your browser until manually deleted",
+        ],
+      },
+      s08: {
+        title: "Your rights (Law 25)",
+        intro: "In accordance with Quebec's Law 25, you have the following rights:",
+        items: [
+          "Right of access: obtain a copy of the personal information we hold about you",
+          "Right of rectification: correct inaccurate or incomplete information",
+          "Right of deletion: request the erasure of your personal data",
+          "Right to withdraw consent: withdraw your consent at any time",
+          "Right to portability: receive your data in a structured and common format",
+        ],
+        closing: "To exercise your rights, contact our officer by email at {email} or by phone at {phone}. We will respond within 30 days in accordance with the law.",
+      },
+      s09: {
+        title: "Security",
+        intro: "We implement appropriate security measures to protect your personal information:",
+        items: [
+          "Encrypted transmission via HTTPS/TLS",
+          "Server-side data validation",
+          "User input sanitization",
+          "Request rate limiting",
+          "HTTP security headers (CSP, HSTS, X-Frame-Options)",
+        ],
+      },
+      s10: {
+        title: "Changes to this policy",
+        text: "We reserve the right to modify this policy at any time. In the event of a substantial change, a new version of consent will be requested on your next visit. The last update date is indicated at the top of this page.",
+      },
+      s11: {
+        title: "Contact",
+        text: "For any questions regarding this policy or the protection of your personal information, please do not hesitate to contact us:",
+        emailLabel: "Email",
+        phoneLabel: "Phone",
+      },
     },
   },
   errors: {

@@ -14,7 +14,7 @@ export default function KeyFigures() {
   ];
 
   return (
-    <section className="bg-white py-16 md:py-20" aria-label="Chiffres clés">
+    <section className="bg-white py-16 md:py-20" aria-label={dict.home.stats.ariaLabel}>
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-4xl mx-auto">
           {figures.map((fig, i) => (
